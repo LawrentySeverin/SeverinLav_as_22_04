@@ -2,11 +2,12 @@
 
 #include <iostream>
 
+
 int main()
 {
-    string some;
-    std::cout << "Hello World!\n";
+    string a;
+    std::cout << "Hello World!" << endl;
     std::cout << "Поздаровайтесь: ";
-    std::cin >> some;
+    std::cin >> a;
 
 }
