@@ -19,6 +19,15 @@ struct pipe // создание новой кастомной переменно
     bool mark;
 };
 
+struct CS
+{
+    string title;
+    string efficiency;
+    int workshops;
+    int workshops_at_work;
+    
+};
+
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
 
