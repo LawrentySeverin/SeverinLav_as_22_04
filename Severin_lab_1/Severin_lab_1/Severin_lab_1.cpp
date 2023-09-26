@@ -13,7 +13,7 @@ struct pipe // создание новой кастомной переменно
     bool mark;
 };
 
-struct CS
+struct CS //новая структура "компрессорная станция"
 {
     string title;
     string efficiency;
@@ -21,7 +21,7 @@ struct CS
     int workshops_at_work;
 };
 
-pipe inputPipe()
+pipe inputPipe()//товечает за ввод данных в структуру труба
 {
     pipe p;
     cout << "type title of pipe: ";
@@ -36,7 +36,7 @@ pipe inputPipe()
 }
 
 
-void outputPipe(pipe p)
+void outputPipe(pipe p)//отвечает за вывод текущих данных на консоль структуры труба
 {
     cout << "title of pipe: " << p.title << endl
         << "length of pipe: " << p.length << endl
@@ -44,13 +44,56 @@ void outputPipe(pipe p)
         << "mark of pipe (in repair or not): " << p.mark << endl;
 }
 
+void editPipe(pipe& p)//отвечает за изменение параметра в ремонте структуры труба
+{
+    cout << "edit mark of pipe (in repair or not): ";
+    bool mark;
+    cin >> mark;
+    p.mark = mark;
+}
+
+CS inputCS()//отвечает за ввод информации в структуру компрессорная станция
+{
+    CS cs;
+    cout << "type title of cs: ";
+    cin >> cs.title;
+    cout << "type efficiency of CS: ";
+    cin >> cs.efficiency;
+    cout << "type number of workshops: ";
+    cin >> cs.workshops;
+    cout << "type number of workshops at work: ";
+    cin >> cs.workshops_at_work;
+    return cs;
+}
+
+
+void outputCS(CS cs)//отвечает за вывод на экран консоли информации из структуры компрессорная станция
+{
+    cout << "title of cs: " << cs.title << endl
+        << "efficiency of CS: " << cs.efficiency << endl
+        << "number of workshops: " << cs.workshops << endl
+        << "number of workshops at work: " << cs.workshops_at_work << endl;
+}
+
+void editCS(CS& cs)//изменяет значение параметра кол-во цехов в ремонте компрессорной станции
+{
+    cout << "edit number of workshops at work: ";
+    int numb;
+    cin >> numb;
+    cs.workshops_at_work = numb;
+}
+
+void infinityCycl()
+{
+    while (true)
+    {
+
+    }
+}
 int main()
 {
     
-    //inputPipe();
-    pipe pip = inputPipe();
-    outputPipe(pip);
-
+    infinityCycl();
 
 
 }
