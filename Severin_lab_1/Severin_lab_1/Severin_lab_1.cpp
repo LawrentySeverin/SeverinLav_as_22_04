@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 
@@ -83,11 +84,45 @@ void editCS(CS& cs)//изменяет значение параметра кол
     cs.workshops_at_work = numb;
 }
 
-void infinityCycl()
+void infinityCycl() /*Бесконечный цикл, выводит на консоль меню выбора действия
+                    в бесконечном цикле вызывает функции соответсвующие номеру вызова*/
 {
+    cout << "Selection menu" << endl
+        << "****************************"<< endl
+        << "1 - add pipe" << endl
+        << "2 - add CS" << endl
+        << "3 - see all objects" << endl
+        << "4 - edit pipe" << endl
+        << "5 - edit CS" << endl
+        << "6 - save" << endl
+        << "7 - download" << endl
+        << "0 - exit" << endl;
+
     while (true)
     {
+        cout << "type your choice: ";
+        int choice;
+        cin >> choice;
 
+        switch (choice)
+        {
+        case 1:
+            inputPipe();
+            break;
+        case 2:
+            inputCS();
+            break;
+        case 3:
+            outputPipe(inputPipe());
+            break;
+
+
+
+
+
+
+
+        }
     }
 }
 int main()
