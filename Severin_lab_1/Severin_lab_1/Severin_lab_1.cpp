@@ -175,8 +175,9 @@ void mainMenu()
 
 }
 
-int maain()
+int main()
 {
+
     pipe pip;
     CS cs;
     while (true)
@@ -188,55 +189,57 @@ int maain()
         switch (choice)
         {
         case 1:
-        {
+
             pip = inputPipe();
             break;
-        }
+
         case 2:
-        {
+
             cs = inputCS();
-        }
-        break;
+
+            break;
         case 3:
-        {
+
             outputPipe(pip);
             outputCS(cs);
             break;
-        }
+
         case 4:
-        {
+
             editPipe(pip);
             break;
-        }
+
         case 5:
-        {
+
             editCS(cs);
             break;
-        }
+
         case 6:
-        {
+
             savePipe(pip);
             saveCS(cs);
             break;
-        }
+
         case 7:
-        {
+
             loadPipe();
             loadCS();
             break;
-        }
+
         case 0:
-        {
+
             return 0;
-        }
+
         default:
-        {
+
             cout << "Wrong Action" << endl;
-        }
-        return 0;
+
+            return 0;
+
         }
     }
 }
+
 
     
 // Советы по началу работы 
