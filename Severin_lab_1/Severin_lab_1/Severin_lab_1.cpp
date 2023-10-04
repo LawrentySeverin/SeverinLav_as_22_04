@@ -1,7 +1,4 @@
-﻿// Severin_lab_1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 using namespace std;
 
@@ -22,17 +19,30 @@ struct CS //новая структура "компрессорная станц
     int workshops_at_work;
 };
 
+bool isItNum(double d)
+{
+
+    return d >= 0;
+
+}
+
 pipe inputPipe()//товечает за ввод данных в структуру труба
 {
     pipe p;
     cout << "type title of pipe: ";
     cin >> p.title;
-    cout << "type lenhgth of pipe: ";
+    cout << "type length of pipe: ";
     cin >> p.length;
     cout << "type diameter of pipe: ";
     cin >> p.diameter;
-    cout << "type mark of pipe (in repair or not): ";
-    cin >> p.mark;
+    do
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "type mark of pipe (0 or 1): ";
+        cin >> p.mark;
+    }while (!isItNum(p.mark));
+
     return p;
 }
 
@@ -40,9 +50,13 @@ void savePipe(pipe& p)//товечает за ввод данных в стру�
 {
     ofstream fout;
     fout.open("pipe.txt", ios::out);
-    fout << p.title << endl << p.length << endl << p.diameter << endl << p.mark;
-    fout.close();
+    if (fout.is_open())
+    {
+        fout << p.title << endl << p.length << endl << p.diameter << endl << p.mark;
+        fout.close();
+    }
 }
+
 
 void outputPipe(pipe& p)//отвечает за вывод текущих данных на консоль структуры труба
 {
@@ -55,22 +69,30 @@ void outputPipe(pipe& p)//отвечает за вывод текущих дан
 pipe loadPipe()//отвечает за вывод текущих данных на консоль структуры труба
 {
     ifstream fin;
-    fin.open("pipe.txt", ios::in);
     pipe p;
-    fin >> p.title;
-    fin >> p.length;
-    fin >> p.diameter;
-    fin >> p.mark;
-    fin.close();
+    fin.open("pipe.txt", ios::in);
+    if (fin.is_open())
+    {
+        fin >> p.title;
+        fin >> p.length;
+        fin >> p.diameter;
+        fin >> p.mark;
+        fin.close();
+    }
     return p;
 }
 
 void editPipe(pipe& p)//отвечает за изменение параметра в ремонте структуры труба
 {
-    cout << "edit mark of pipe (in repair or not): ";
-    bool mark;
-    cin >> mark;
-    p.mark = mark;
+    do
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "edit mark of pipe (0 or 1): ";
+        bool mark;
+        cin >> mark;
+        p.mark = mark;
+    } while (!isItNum(p.mark));
 }
 
 CS inputCS()//отвечает за ввод информации в структуру компрессорная станция
@@ -92,9 +114,12 @@ void saveCS(CS& cs)//товечает за ввод данных в структ
 {
     ofstream fout;
     fout.open("cs.txt", ios::out);
-    fout << cs.title << endl << cs.efficiency << endl << cs.workshops << endl << cs.workshops_at_work;
-    fout.close();
-{
+    if (fout.is_open())
+    {
+        fout << cs.title << endl << cs.efficiency << endl << cs.workshops << endl << cs.workshops_at_work;
+        fout.close();
+    }
+}
 
 
 void outputCS(CS& cs)//отвечает за вывод на экран консоли информации из структуры компрессорная станция
@@ -108,28 +133,37 @@ void outputCS(CS& cs)//отвечает за вывод на экран конс
 CS loadCS()//отвечает за вывод текущих данных на консоль структуры труба
 {
     ifstream fin;
-    fin.open("cs.txt", ios::in);
     CS cs;
-    fin >> cs.title;
-    fin >> cs.efficiency;
-    fin >> cs.workshops;
-    fin >> cs.workshops_at_work;
-    fin.close();
+    fin.open("cs.txt", ios::in);
+    if (fin.is_open())
+    {
+        fin >> cs.title;
+        fin >> cs.efficiency;
+        fin >> cs.workshops;
+        fin >> cs.workshops_at_work;
+        fin.close();
+    }
     return cs;
+}
 
 void editCS(CS& cs)//изменяет значение параметра кол-во цехов в ремонте компрессорной станции
 {
-    cout << "edit number of workshops at work: ";
-    int numb;
-    cin >> numb;
-    cs.workshops_at_work = numb;
+    do
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "edit number of workshops at work: ";
+        int numb;
+        cin >> numb;
+        cs.workshops_at_work = numb;
+    } while (!isItNum(cs.workshops_at_work));
 }
 
-/*void infinityCycl() /*Бесконечный цикл, выводит на консоль меню выбора действия
-                    в бесконечном цикле вызывает функции соответсвующие номеру вызова
+void mainMenu()
 {
+
     cout << "Selection menu" << endl
-        << "****************************"<< endl
+        << "****************************" << endl
         << "1 - add pipe" << endl
         << "2 - add CS" << endl
         << "3 - see all objects" << endl
@@ -139,38 +173,71 @@ void editCS(CS& cs)//изменяет значение параметра кол
         << "7 - download" << endl
         << "0 - exit" << endl;
 
+}
+
+int maain()
+{
+    pipe pip;
+    CS cs;
     while (true)
     {
-        cout << "type your choice: ";
+        mainMenu();
         int choice;
         cin >> choice;
 
         switch (choice)
         {
         case 1:
-            inputPipe();
+        {
+            pip = inputPipe();
             break;
+        }
         case 2:
-            inputCS();
-            break;
+        {
+            cs = inputCS();
+        }
+        break;
         case 3:
-            outputPipe(inputPipe());
+        {
+            outputPipe(pip);
+            outputCS(cs);
             break;
-
-
-
-
-
-
-
+        }
+        case 4:
+        {
+            editPipe(pip);
+            break;
+        }
+        case 5:
+        {
+            editCS(cs);
+            break;
+        }
+        case 6:
+        {
+            savePipe(pip);
+            saveCS(cs);
+            break;
+        }
+        case 7:
+        {
+            loadPipe();
+            loadCS();
+            break;
+        }
+        case 0:
+        {
+            return 0;
+        }
+        default:
+        {
+            cout << "Wrong Action" << endl;
+        }
+        return 0;
         }
     }
-} */
-int main()
-{
-    
-
 }
+
     
 // Советы по началу работы 
 //   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
