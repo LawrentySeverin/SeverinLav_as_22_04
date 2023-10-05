@@ -195,11 +195,11 @@ void mainMenu()
 
 }
 
-int main(pipe& pip, CS& cs)
+int main()
 {
 
-    //pipe pip;
-    //CS cs;
+    pipe pip;
+    CS cs;
     while (true)
     {
         mainMenu();
@@ -242,8 +242,8 @@ int main(pipe& pip, CS& cs)
 
         case 7:
 
-            loadPipe();
-            loadCS();
+            pip = loadPipe();
+            cs = loadCS();
             break;
 
         case 0:
