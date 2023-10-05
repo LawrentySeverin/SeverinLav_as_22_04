@@ -31,10 +31,20 @@ pipe inputPipe()//товечает за ввод данных в структу�
     pipe p;
     cout << "type title of pipe: ";
     cin >> p.title;
-    cout << "type length of pipe: ";
-    cin >> p.length;
-    cout << "type diameter of pipe: ";
-    cin >> p.diameter;
+    do
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "type length of pipe: ";
+        cin >> p.length;
+    } while (!isItNum(p.length));
+    do
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "type diameter of pipe: ";
+        cin >> p.diameter;
+    } while (!isItNum(p.diameter));
     do
     {
         cin.clear();
@@ -92,7 +102,7 @@ void editPipe(pipe& p)//отвечает за изменение парамет�
         bool mark;
         cin >> mark;
         p.mark = mark;
-    } while (!isItNum(p.mark));
+    } while (!isItNum(p.mark) || p.mark > 1);
 }
 
 CS inputCS()//отвечает за ввод информации в структуру компрессорная станция
@@ -102,10 +112,20 @@ CS inputCS()//отвечает за ввод информации в струк�
     cin >> cs.title;
     cout << "type efficiency of CS: ";
     cin >> cs.efficiency;
-    cout << "type number of workshops: ";
-    cin >> cs.workshops;
-    cout << "type number of workshops at work: ";
-    cin >> cs.workshops_at_work;
+    do
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "type number of workshops: ";
+        cin >> cs.workshops;
+    } while (!isItNum(cs.workshops));
+    do
+    {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "type number of workshops at work: ";
+        cin >> cs.workshops_at_work;
+    } while (!isItNum(cs.workshops_at_work));
     return cs;
 }
 
@@ -175,11 +195,11 @@ void mainMenu()
 
 }
 
-int main()
+int main(pipe& pip, CS& cs)
 {
 
-    pipe pip;
-    CS cs;
+    //pipe pip;
+    //CS cs;
     while (true)
     {
         mainMenu();
